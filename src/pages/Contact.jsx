@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import { TextField, Button, Typography } from '@mui/material';
 import { Link } from 'react-router-dom';
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 export default function Contact() {
     const [formData, setFormData] = useState({ name: '', email: '', message: '' });
@@ -15,10 +17,22 @@ export default function Contact() {
         }));
       };
 
+
       const handleSubmit = (e) => {
         e.preventDefault();
         console.log(formData);
         setSubmittedData((prevData) => [...prevData, formData]);
+        toast.success('Form submited successfully', {
+          position: "top-right",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "light",
+          
+          });
         setFormData({ name: '', email: '', message: '' }); // Reset form fields
       };
   return (
